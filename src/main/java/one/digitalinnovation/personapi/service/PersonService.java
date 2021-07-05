@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -19,12 +18,12 @@ import java.util.stream.Collectors;
 public class PersonService {
 
     private PersonRepository personRepository;
-
+    
     private final PersonMapper personMapper = PersonMapper.INSTANCE;
 
     public MessageResponseDTO createPerson(PersonDTO personDTO){
-        Person personToSaved = personMapper.toModel(personDTO);
 
+        Person personToSaved = personMapper.toModel(personDTO);
         Person savedPerson = personRepository.save((personToSaved));
         return createMessageResponse(savedPerson.getId(), "Create person ID ");
     }
@@ -50,6 +49,7 @@ public class PersonService {
 
 
     public MessageResponseDTO updateById(Long id, PersonDTO personDTO) throws PersonNotFoundException {
+
         verifyIfExists(id);
 
         Person personToUpdate = personMapper.toModel(personDTO);

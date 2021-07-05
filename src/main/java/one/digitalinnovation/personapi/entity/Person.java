@@ -1,13 +1,18 @@
 package one.digitalinnovation.personapi.entity;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import one.digitalinnovation.personapi.mapear.JobMapper;
+import one.digitalinnovation.personapi.service.JobService;
+import org.mapstruct.MappingTarget;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Data
@@ -33,4 +38,6 @@ public class Person {
 
     @OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST,CascadeType.MERGE, CascadeType.REMOVE})
     private List<Phone> phones;
+
+
 }
